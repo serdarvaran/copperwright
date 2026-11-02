@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="docs/images/logo.png" alt="Copperwright logo" width="96">
+
 # Copperwright
 
 **An electronics skill for coding agents that audits boards before you order them.**
@@ -14,7 +16,7 @@
 ![ESP32 / S3 / C3 / C6](https://img.shields.io/badge/ESP32-S3%20%C2%B7%20C3%20%C2%B7%20C6-E7352C)
 ![Tests: 93](https://img.shields.io/badge/tests-93-brightgreen)
 
-<img src="docs/images/cover.png" alt="Copperwright: ESP32-S3 strapping pins from the skill's rule table" width="760">
+<a href="https://www.agensi.io/r/SERDARVARAN?to=/skills/copperwright-kicad-esp32-board-audits-before-you-order"><img src="docs/images/cover.png" alt="Copperwright: ESP32-S3 strapping pins from the skill's rule table" width="760"></a>
 
 </div>
 
@@ -49,6 +51,11 @@ is called done.
 
 Real findings from the tools on an ESP32-S3 sensor board netlist with seeded defects:
 
+<p align="center"><img src="docs/images/netlist-report.png" alt="netlist_audit and esp32_pin_audit output naming ref, pin and net" width="760"></p>
+
+<details>
+<summary>Plain-text output</summary>
+
 ```text
 $ netlist_audit.py --netlist sensor_node.xml
 ERROR single_pin_net ref=U1 pin=38 net=LED_STATUS: expected labelled net with >=2 pins, got 1 pin
@@ -65,6 +72,8 @@ ERROR en_rc ref=U1 pin=3(EN) net=EN: expected R≈10kΩ to 3V3 and C≈1µF to G
       got missing C to GND; pull-ups [('R1', '10kΩ')], caps [] -> Add 1 µF from EN to GND near the module.
 FAIL: 8 checks, 2 errors, 0 warnings
 ```
+
+</details>
 
 On an open-source ESP32-S3 watch schematic, the same tools found the EN pin and GPIO0 wired straight to the 3V3 rail
 (no reset and no auto-programming), and a CP2102N and an AMS1117 with no supply capacitors.
@@ -170,6 +179,8 @@ GPIO15; ESP32-C3 GPIO8 floats by default; ESP32-S3 GPIO3 is a strap.
 - **Assembly outputs.** `fab_outputs.py` writes the BOM and CPL in the fab's column format (JLCPCB by default),
   checks DNP parts and LCSC codes, applies rotation offsets, and optionally exports Gerbers, drill and STEP.
 - **Renders.** `render_board.sh` produces top, bottom and isometric board images and schematic sheets for review.
+
+<p align="center"><img src="docs/images/pcb-report.png" alt="IPC-2221 widths and a verify_dru run where all 19 JLCPCB rules fire" width="760"></p>
 
 ## Rule library
 

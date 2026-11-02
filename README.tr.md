@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="docs/images/logo.png" alt="Copperwright logo" width="96">
+
 # Copperwright
 
 **Kartı sipariş etmeden önce denetleyen, kodlama ajanları için elektronik becerisi.**
@@ -14,7 +16,7 @@
 ![ESP32 / S3 / C3 / C6](https://img.shields.io/badge/ESP32-S3%20%C2%B7%20C3%20%C2%B7%20C6-E7352C)
 ![Testler: 93](https://img.shields.io/badge/testler-93-brightgreen)
 
-<img src="docs/images/cover.png" alt="Copperwright: becerinin kural tablosundan ESP32-S3 strapping pinleri" width="760">
+<a href="https://www.agensi.io/r/SERDARVARAN?to=/skills/copperwright-kicad-esp32-board-audits-before-you-order"><img src="docs/images/cover.png" alt="Copperwright: becerinin kural tablosundan ESP32-S3 strapping pinleri" width="760"></a>
 
 </div>
 
@@ -49,6 +51,11 @@ deterministik araçlarla denetlenir.
 
 Hatalar yerleştirilmiş bir ESP32-S3 sensör kartı netlistinde araçların gerçek çıktısı:
 
+<p align="center"><img src="docs/images/netlist-report.png" alt="ref, pin ve net adıyla netlist_audit ve esp32_pin_audit çıktısı" width="760"></p>
+
+<details>
+<summary>Düz metin çıktısı</summary>
+
 ```text
 $ netlist_audit.py --netlist sensor_node.xml
 ERROR single_pin_net ref=U1 pin=38 net=LED_STATUS: expected labelled net with >=2 pins, got 1 pin
@@ -65,6 +72,8 @@ ERROR en_rc ref=U1 pin=3(EN) net=EN: expected R≈10kΩ to 3V3 and C≈1µF to G
       got missing C to GND; pull-ups [('R1', '10kΩ')], caps [] -> Add 1 µF from EN to GND near the module.
 FAIL: 8 checks, 2 errors, 0 warnings
 ```
+
+</details>
 
 Araç çıktıları, ajanların ve araçların ortak dili olduğu için İngilizcedir; ajan sonuçları kullanıcının dilinde
 raporlar.
@@ -183,6 +192,8 @@ Araştırma sırasında düzeltilen yaygın yanlış bilgiler de kayıtlı. Örn
   - isteğe bağlı olarak Gerber, delik ve STEP dosyalarını da çıkarır.
 - **Görseller.** `render_board.sh`, kontrol için kartın üst, alt ve izometrik görüntülerini ve şematik sayfalarını
   üretir.
+
+<p align="center"><img src="docs/images/pcb-report.png" alt="IPC-2221 genişlikleri ve 19 JLCPCB kuralının hepsinin tetiklendiği verify_dru çalıştırması" width="760"></p>
 
 ## Kural kütüphanesi
 
